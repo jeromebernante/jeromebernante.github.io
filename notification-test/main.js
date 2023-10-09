@@ -48,6 +48,7 @@ function testNotification() {
               const options = {
                   body: 'This is a test notification!',
                   icon: 'icon.png',
+                  sound: 'shopee_sound.mp3', // Replace with the path to your custom sound file
               };
 
               serviceWorkerRegistration.showNotification('Test Notification', options);
