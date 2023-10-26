@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+main {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.box-reader {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  .box-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    #btnScanCLOSE{
+      margin-top: 1rem;
+      padding: 1rem;
+      width: calc(100% - 1rem);
+    }
+  }
+
+}
