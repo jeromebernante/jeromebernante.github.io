@@ -18,7 +18,7 @@
       "date": "September 2025",
       "client": "Personal Project",
       "direct": {
-        "website": "https://your-vercel-url.vercel.app/"
+        "website": "https://movie-browser-app-gules.vercel.app/"
       },
       "features": [
         "Now Playing carousel",
