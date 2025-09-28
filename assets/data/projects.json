@@ -1,5 +1,34 @@
 {
-  "projects": [
+      "projects": [
+        {
+      "slug": "movie-browser",
+      "title": "Movie & TV Browser App",
+      "short": "Movie & TV Browser — browse latest movies and TV shows with details.",
+      "badge": "Personal Project",
+      "overview": "A responsive movie and TV browsing application powered by The Movie Database (TMDb) API. Users can explore latest releases, popular titles, and top-rated content with detailed pages for each movie and show.",
+      "challenge": "I wanted to build a modern entertainment browser that mimics streaming services. The challenge was managing API data efficiently, implementing dynamic routes for details pages, and handling deployment routing on Vercel.",
+      "solution": "I developed a React + Vite app with React Router for navigation and TailwindCSS for styling. It features carousels, pagination, and responsive grids. Deployment on Vercel was configured with rewrites for proper client-side routing.",
+      "description": "<p>A fully responsive movie and TV browsing app that integrates with the TMDb API. Features include carousels for now-playing titles, popular and top-rated sections with tab switching, latest movies and TV grids with pagination, and dedicated detail pages for each movie or TV show. Built with React, Vite, TailwindCSS, and deployed on Vercel.</p>",
+      "images": [
+        "assets/img/portfolio/movie1.webp",
+        "assets/img/portfolio/movie2.webp",
+        "assets/img/portfolio/movie3.webp"
+      ],
+      "tags": ["React", "Vite", "TailwindCSS", "TMDb API", "Vercel"],
+      "date": "September 2025",
+      "client": "Personal Project",
+      "direct": {
+        "website": "https://your-vercel-url.vercel.app/"
+      },
+      "features": [
+        "Now Playing carousel",
+        "Popular & Top Rated movies/TV with toggle",
+        "Latest movies & TV grid with pagination",
+        "Movie & TV detail pages",
+        "Dynamic document titles",
+        "Responsive design"
+      ]
+    },
     {
       "slug": "ERHS",
       "title": "ERHS Web-based Property Management System",
