@@ -182,24 +182,25 @@
             }).join('');
 
             return `
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item ${filterClass}">
-                <div class="portfolio-card">
-                  <div class="portfolio-img">
-                    <img src="${mainImg}" alt="${project.title}" class="img-fluid">
-                    <div class="portfolio-overlay">
-                      ${gallery}
-                      <a href="${detailsHref}" target="_blank" rel="noopener noreferrer" class="portfolio-details-link"><i class="bi bi-link"></i></a>
-                    </div>
-                  </div>
-                  <div class="portfolio-info">
-                    <h4>${project.title}</h4>
-                    <p>${project.short || ''}</p>
-                    <div class="portfolio-tags">
-                      ${tagsHtml}
-                    </div>
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item ${filterClass}">
+              <div class="portfolio-card d-flex flex-column">
+                <div class="portfolio-img">
+                  <img src="${mainImg}" alt="${project.title}" class="img-fluid">
+                  <div class="portfolio-overlay">
+                    ${gallery}
+                    <a href="${detailsHref}" target="_blank" rel="noopener noreferrer" class="portfolio-details-link"><i class="bi bi-link"></i></a>
                   </div>
                 </div>
-              </div>`;
+                <div class="portfolio-info mt-auto">
+                  <h4>${project.title}</h4>
+                  <p>${project.short || ''}</p>
+                  <div class="portfolio-tags">
+                    ${tagsHtml}
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
           }).join('\n');
 
           // Re-init lightbox, isotope, and AOS after images load
