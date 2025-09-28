@@ -1,0 +1,106 @@
+{
+  "projects": [
+    {
+      "slug": "ERHS",
+      "title": "ERHS Web-based Property Management System",
+      "short": "ERHS Web-based Property Management System — handles inventory, borrowing, issuance, and reports.",
+      "badge": "Capstone Project",
+      "overview": "A property and inventory management system used by school staff to track assets, manage borrowing requests, and generate issuance reports. The UI is responsive and optimized for low-bandwidth environments.",
+      "challenge": "The school had inconsistent inventory records across departments and no formal borrowing workflow, causing lost items and manual reconciliation every term.",
+      "solution": "We built a role-based web application with an inventory catalog, borrow/return workflow, and automated issuance reports. Staff can now audit assets, approve borrowing, and export reports efficiently.",
+      "description": "<p>Full-featured property management system for school inventory and borrowing workflows. Built with PHP and MySQL, responsive UI with Bootstrap, and jQuery for client interactions.</p>",
+      "images": [
+        "assets/img/portfolio/erhs1.webp",
+        "assets/img/portfolio/erhs2.webp",
+        "assets/img/portfolio/erhs3.webp"
+      ],
+      "tags": ["Web", "Responsive", "Bootstrap", "jQuery", "PHP", "MySQL"],
+      "date": "June 2024",
+      "client": "Ernesto Rondon High School",
+      "direct": {
+        "website": "https://erhspropertymgmt.online/"
+      },
+      "features": [
+        "Inventory CRUD",
+        "Borrow/Return workflow",
+        "Issuance reports",
+        "User roles and permissions",
+        "Responsive design"
+      ]
+    },
+    {
+      "slug": "snake-hunger-game",
+      "title": "Snake Hunger Game",
+      "short": "A 2-player game built with Python and Pygame.",
+      "badge": "Game",
+      "overview": "A competitive two-player snake game focused on fast rounds and strategic maneuvers. Players compete locally on the same machine using separate key bindings.",
+      "challenge": "Create an engaging local multiplayer experience with simple controls and visible scorekeeping while preventing collisions from making rounds unfair.",
+      "solution": "Implemented responsive keyboard controls, round-based scoring, and collision detection logic that balances risk and reward.",
+      "description": "<p>Two-player competitive snake game using Pygame. Score-based rounds, collisions cause elimination. Built for desktop with keyboard controls and multiplayer.</p>",
+      "images": [
+        "assets/img/portfolio/shg1.webp",
+        "assets/img/portfolio/shg2.webp"
+      ],
+      "tags": ["Game", "Python", "Pygame"],
+      "date": "December 2022",
+      "client": "Personal",
+      "direct": {
+        "download": "https://drive.google.com/file/d/1JkDtTFaruCgWQoepIakLPsz1BcZAZK-l/view"
+      },
+      "features": ["2-player", "Collision mechanics"]
+    },
+    {
+      "slug": "quiz-app",
+      "title": "Quiz App",
+      "short": "A Quiz App built with HTML, CSS, and JavaScript.",
+      "badge": "Web App",
+      "overview": "A lightweight quiz platform that supports multiple-choice quizzes. Designed for quick learning sessions on mobile devices.",
+      "challenge": "Design a mobile-first interface that loads fast without server-side storage.",
+      "solution": "Built a client-side app using vanilla JS and minimal code for extremely fast loading.",
+      "description": "<p>A lightweight, open-source quiz application supporting multiple-choice questions and scoring. Designed for a fast load and mobile-first UX.</p>",
+      "images": [
+        "assets/img/portfolio/quizapp1.webp",
+        "assets/img/portfolio/quizapp2.webp"
+      ],
+      "tags": ["Web", "Responsive", "HTML", "CSS", "JavaScript"],
+      "date": "March 2022",
+      "client": "Personal / Open Source",
+      "direct": {
+        "github": "",
+        "website": ""
+      },
+      "features": [
+        "Mobile-first UI",
+        "Lightweight Design"
+      ]
+    },
+    {
+      "slug": "pos-app",
+      "title": "POS App",
+      "short": "POS App built with Bootstrap, JavaScript, PHP, and MySQL.",
+      "badge": "Retail",
+      "overview": "A small-store point-of-sale system with product catalog, order creation, receipt generation, and inventory adjustments.",
+      "challenge": "Provide a responsive POS interface that works reliably in low-spec environments and supports quick checkout flows.",
+      "solution": "Implemented a responsive Bootstrap UI, server-side order handling in PHP, and inventory sync on checkout.",
+      "description": "<p>Point-of-Sale application with product catalog, cart, receipt generation, and user authentication. Built for small stores to manage orders and inventory.</p>",
+      "images": [
+        "assets/img/portfolio/posapp1.webp",
+        "assets/img/portfolio/posapp2.webp",
+        "assets/img/portfolio/posapp3.webp"
+      ],
+      "tags": ["Web", "Responsive", "Bootstrap", "JavaScript", "PHP", "MySQL"],
+      "date": "May 2024",
+      "client": "Personal",
+      "direct": {
+        "website": "https://smallstorepos.online/",
+        "github": ""
+      },
+      "features": [
+        "Product catalog",
+        "Inventory adjustments",
+        "User accounts and auth",
+        "Responsive POS UI"
+      ]
+    }
+  ]
+}

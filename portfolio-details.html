@@ -26,14 +26,6 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: FolioOne
-  * Template URL: https://bootstrapmade.com/folioone-bootstrap-portfolio-website-template/
-  * Updated: Aug 23 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="portfolio-details-page">
@@ -41,35 +33,12 @@
   <header id="header" class="header d-flex align-items-center light-background sticky-top">
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
-      <!-- <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-      <img src="assets/img/logo.webp" alt="">
-      <h1 class="sitename">FolioOne</h1> 
-    </a> -->
-
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="resume.html">Resume</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
+          <li><a href="portfolio.html" class="active">Portfolio</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -99,7 +68,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio Details</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam</p>
+        <p>Detailed case studies for each project — including the business problem, technical approach, and the outcomes. Use this page to review features, screenshots, and implementation notes for each project in the portfolio.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -197,15 +166,15 @@
               <h2 class="project-title">Innovative Financial Dashboard App</h2>
 
               <div class="project-website">
-                <i class="bi bi-link-45deg"></i>
-                <a href="#" target="_blank">projectwebsite.example.com</a>
+                <a class="site-link" href="#" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;">
+                  <i class="bi bi-globe2" aria-hidden="true"></i>
+                  <span class="site-text" style="margin-left:.5rem;">projectwebsite.example.com</span>
+                </a>
+                <a class="github-link ms-3" href="#" target="_blank" rel="noopener noreferrer" style="display:none;" aria-label="Repository"><i class="bi bi-github"></i></a>
+                <a class="download-link ms-3" href="#" target="_blank" rel="noopener noreferrer" style="display:none;" aria-label="Download"><i class="bi bi-download"></i></a>
               </div>
 
               <div class="project-overview">
-                <p class="lead">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
-                </p>
-
                 <div class="accordion project-accordion" id="portfolio-details-projectAccordion">
                   <div class="accordion-item" data-aos="fade-up">
                     <h2 class="accordion-header">
@@ -312,6 +281,184 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Dynamic project loader: reads ?project=slug and populates the page from assets/data/projects.json -->
+  <script>
+    (function () {
+      function getParam(name) { return new URLSearchParams(location.search).get(name); }
+      function $(s) { return document.querySelector(s); }
+      function $all(s) { return Array.from(document.querySelectorAll(s)); }
+
+      const slug = getParam('project');
+      if (!slug) return;
+
+      fetch('assets/data/projects.json')
+        .then(r => r.json())
+        .then(data => {
+          const project = (data.projects || []).find(p => p.slug === slug);
+          if (!project) {
+            const titleEl = $('.project-title');
+            if (titleEl) titleEl.textContent = 'Project not found';
+            return;
+          }
+
+          // Title and badge
+          const titleEl = $('.project-title');
+          if (titleEl) titleEl.textContent = project.title;
+          const badgeEl = document.querySelector('.project-badge');
+          if (badgeEl) badgeEl.textContent = project.badge || '';
+
+          // Website / GitHub / Download icon links (show only when provided)
+          const direct = project.direct || {};
+          const websiteCandidate = direct.website || project.website || (project.links && project.links.site) || null;
+          const repoCandidate = direct.github || (project.links && project.links.repo) || null;
+          const downloadCandidate = direct.download || (project.links && project.links.download) || null;
+
+          const siteLink = document.querySelector('.project-website .site-link');
+          const siteText = siteLink ? siteLink.querySelector('.site-text') : null;
+          const githubLink = document.querySelector('.project-website .github-link');
+          const downloadLink = document.querySelector('.project-website .download-link');
+
+          if (siteLink) {
+            if (websiteCandidate) {
+              siteLink.href = websiteCandidate;
+              if (siteText) siteText.textContent = websiteCandidate.replace(/^https?:\/\//, '');
+              siteLink.style.display = 'inline-flex';
+              siteLink.target = '_blank';
+              siteLink.rel = 'noopener noreferrer';
+            } else {
+              // hide when no website
+              siteLink.removeAttribute('href');
+              if (siteText) siteText.textContent = '';
+              siteLink.style.display = 'none';
+            }
+          }
+
+          if (githubLink) {
+            if (repoCandidate) {
+              githubLink.href = repoCandidate;
+              githubLink.style.display = 'inline-block';
+            } else {
+              githubLink.removeAttribute('href');
+              githubLink.style.display = 'none';
+            }
+          }
+
+          if (downloadLink) {
+            if (downloadCandidate) {
+              downloadLink.href = downloadCandidate;
+              downloadLink.style.display = 'inline-block';
+            } else {
+              downloadLink.removeAttribute('href');
+              downloadLink.style.display = 'none';
+            }
+          }
+
+          // Date & client
+          const dateSpan = document.querySelector('.date-client .meta-item:nth-child(1) span');
+          const clientSpan = document.querySelector('.date-client .meta-item:nth-child(2) span');
+          if (dateSpan) dateSpan.textContent = project.date || '';
+          if (clientSpan) clientSpan.textContent = project.client || '';
+
+          // Overview (populate the paragraph inside .project-overview)
+          const overviewPara = document.querySelector('.project-overview p');
+          if (overviewPara) overviewPara.innerHTML = project.overview || project.description || project.short || '';
+
+          // Accordion content: Overview / Challenge / Solution
+          const overviewBody = document.querySelector('#portfolio-details-collapse-1 .accordion-body');
+          const challengeBody = document.querySelector('#portfolio-details-collapse-2 .accordion-body');
+          const solutionBody = document.querySelector('#portfolio-details-collapse-3 .accordion-body');
+          if (overviewBody) overviewBody.innerHTML = `<p>${project.overview || project.description || ''}</p>`;
+          if (challengeBody) challengeBody.innerHTML = `<p>${project.challenge || 'The project required a practical solution for the client.'}</p>`;
+          if (solutionBody) solutionBody.innerHTML = `<p>${project.solution || 'Implemented solution details are unavailable.'}</p>`;
+
+          // Tech badges
+          const techWrap = $('.tech-stack-badges');
+          if (techWrap) techWrap.innerHTML = (project.tags || []).map(t => `<span>${t}</span>`).join(' ');
+
+          // Swiper slides
+          const swiperWrapper = document.querySelector('.portfolio-details-slider .swiper-wrapper');
+          if (swiperWrapper) {
+            swiperWrapper.innerHTML = (project.images || []).map((src, idx) => `\n                <div class="swiper-slide">\n                  <a href="${src}" class="glightbox" data-title="${project.title} - Image ${idx + 1}">\n                    <img src="${src}" alt="${project.title} - ${idx + 1}" class="img-fluid">\n                  </a>\n                </div>`).join('');
+          }
+
+          // Thumbnails
+          const thumbRow = document.querySelector('.thumbnail-grid .row');
+          if (thumbRow) {
+            thumbRow.innerHTML = (project.images || []).map((src, idx) => `\n                <div class="col-3">\n                  <a href="${src}" class="glightbox" data-title="${project.title} - Image ${idx + 1}">\n                    <img src="${src}" alt="${project.title} - ${idx + 1}" class="img-fluid">\n                  </a>\n                </div>`).join('');
+          }
+
+          // Features
+          const featureCols = $all('.project-features .feature-list');
+          const features = project.features || [];
+          const half = Math.ceil(features.length / 2);
+          if (featureCols.length >= 2) {
+            featureCols[0].innerHTML = features.slice(0, half).map(f => `<li><i class="bi bi-check2-circle"></i> ${f}</li>`).join('');
+            featureCols[1].innerHTML = features.slice(half).map(f => `<li><i class="bi bi-check2-circle"></i> ${f}</li>`).join('');
+          }
+
+          // CTA button (View) - respect primaryLink, links, or website
+          const viewBtn = $('.cta-buttons .btn-view-project');
+          const detailsHref = `portfolio-details.html?project=${encodeURIComponent(project.slug)}`;
+          const candidatePrimary = (project.direct && (project.direct.website || project.direct.github || project.direct.download)) || project.primaryLink || project.website || (project.links && (project.links.site || project.links.repo || project.links.download));
+          if (viewBtn) {
+            if (candidatePrimary) {
+              viewBtn.href = candidatePrimary;
+              // open external targets in new tab
+              if (!candidatePrimary.startsWith('portfolio-details.html')) {
+                viewBtn.target = '_blank';
+                viewBtn.rel = 'noopener noreferrer';
+              } else {
+                viewBtn.removeAttribute('target');
+                viewBtn.removeAttribute('rel');
+              }
+            } else {
+              // fallback: link to details page itself
+              viewBtn.href = detailsHref;
+            }
+          }
+
+          // Extra repo/download buttons are handled by the header icons now (no inline extra links)
+          
+
+          // Next project button: find next project in the array (wrap around)
+          const nextBtn = $('.cta-buttons .btn-next-project');
+          if (nextBtn) {
+            const projects = data.projects || [];
+            const currentIndex = projects.findIndex(p => p.slug === slug);
+            let nextIndex = 0;
+            if (currentIndex >= 0) nextIndex = (currentIndex + 1) % projects.length;
+            const nextProject = projects[nextIndex];
+            if (nextProject) {
+              nextBtn.href = `portfolio-details.html?project=${encodeURIComponent(nextProject.slug)}`;
+              nextBtn.setAttribute('role', 'link');
+              // keep a generic label (no project name)
+              nextBtn.innerHTML = `Next Project <i class="bi bi-arrow-right"></i>`;
+            } else {
+              nextBtn.removeAttribute('href');
+            }
+          }
+
+          // Re-init GLightbox & Swiper
+          setTimeout(() => {
+            try { if (window.GLightbox) window.GLightbox({ selector: '.glightbox' }); } catch (e) {}
+            try {
+              if (window.Swiper) {
+                const sliderEl = document.querySelector('.portfolio-details-slider');
+                if (sliderEl && sliderEl.swiper && typeof sliderEl.swiper.destroy === 'function') {
+                  sliderEl.swiper.destroy(true, true);
+                }
+                const cfgEl = document.querySelector('.swiper-config');
+                const cfg = cfgEl ? JSON.parse(cfgEl.textContent || '{}') : {};
+                new window.Swiper('.portfolio-details-slider', Object.assign({ loop: true, slidesPerView: 1, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } }, cfg));
+              }
+            } catch (e) {}
+          }, 150);
+
+        })
+        .catch(err => console.error('Failed to load project data', err));
+    })();
+  </script>
 
 </body>
 
